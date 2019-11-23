@@ -7,15 +7,9 @@ public class DenseGraph {
 	static int maxWeight;
 	
 	LinkedList<Node> [] adjacencyList;
+//	LinkedList<Edge> [] adjacencyList;
 	
-	public int getVertices() {
-		return vertices;
-	}
 
-	public void setVertices(int vertices) {
-		this.vertices = vertices;
-		
-	}
 
 	public DenseGraph(int vertices) {
 		super();
@@ -32,10 +26,18 @@ public class DenseGraph {
 		
         Node snode = new Node(src, weight);
         Node dnode = new Node(dest,weight);
+		
+//		 Edge sedge = new Edge(src,dest, weight);
+//	     Edge dedge = new Edge(dest,src,weight);
+	     
         if (!edgeExists(snode,dnode))
         {
+//        	 adjacencyList[src].add(dnode); //for directed graph
+//             adjacencyList[dest].add(snode);//for undirected
+        	
         	 adjacencyList[src].add(dnode); //for directed graph
              adjacencyList[dest].add(snode);//for undirected
+             
              edges++;
         }
 //        adjacencyList[src].add(dnode); //for directed graph
@@ -67,7 +69,7 @@ public class DenseGraph {
 	
 	public void generateDenseGraph() {
 		for(int  i=0;i<vertices;i++) {
-			for(int j=1+1;j<vertices;j++) {
+			for(int j=1;j<vertices;j++) {
 				if(i!=j) {
 					double random_number=Math.random();
 					if(random_number < 0.2) {
