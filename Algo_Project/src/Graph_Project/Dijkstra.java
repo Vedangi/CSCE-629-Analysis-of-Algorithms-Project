@@ -2,10 +2,6 @@ package Graph_Project;
 
 import java.util.*;
 
-//status
-//in_tree
-//unseen
-//fringe
 
 
 public class Dijkstra {
@@ -20,12 +16,12 @@ public class Dijkstra {
 	static double[] bandwidth;
 	
 	
-	public Dijkstra(Graph g,int s, int t) {
+	public Dijkstra(Graph G,int s, int t) {
 		super();
 	
 		this.s = s;
 		this.t = t;
-		G = g;
+		this.G = G;
 		
 		dad = new int[G.vertices];
 		bandwidth= new double[G.vertices];
@@ -44,7 +40,7 @@ public class Dijkstra {
 	public void calculate_dijkstra() {
 		
 		for(Node nod:G.adjacencyList[s]) {
-			bandwidth[nod.dest]=nod.dest;
+			bandwidth[nod.dest]=nod.weight;
 			dad[nod.dest]=s;
 			status[nod.dest]="fringe";
 			
@@ -78,11 +74,11 @@ public class Dijkstra {
 	}
 
 	public double minimum(double a,int b) {
-		int min = b;
+		double min = b;
 		if(a<b) {
-			return a;
+			min=a;
 		}
-		return b;
+		return min;
 	}
 	
 	public int bestFringe(String[] status, double[] bandwidth) {
