@@ -83,8 +83,8 @@ public class DenseGraph {
 	 
 	public void printGraph(){
 		System.out.println("Total nodes:"+ vertices);
-		System.out.println("Total edges:"+ 2*edges);
-		System.out.println("Average degree:"+ ((2*edges)/vertices));
+		System.out.println("Total edges:"+ edges);
+		System.out.println("Average degree:"+ ((edges)/vertices));
 		
 		 for(int i = 0; i < vertices; i++) 
 	        { 

@@ -3,13 +3,13 @@ import java.util.*;
 
 public class Heap {
 
-	static int vertices;
-	static int[] H;
-	static int[] D;
-	static int[] pos;
+	 int vertices;
+	 int[] H;
+	 int[] D;
+	 int[] pos;
 	
-	static int currentSize;
-	static int MaxSize;
+	 int currentSize;
+	 int MaxSize;
 	
 	
 	public Heap(int vertices) {
@@ -117,7 +117,7 @@ public class Heap {
 
 
 	int maxValue() {
-		return D[0];
+		return H[0];
 		
 	}
 	

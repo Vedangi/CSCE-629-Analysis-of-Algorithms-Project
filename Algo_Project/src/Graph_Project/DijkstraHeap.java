@@ -3,14 +3,14 @@ import java.util.*;
 
 public class DijkstraHeap {
 
-	double inf = Double.POSITIVE_INFINITY;
-	static int V;
+	Integer inf = Integer.MAX_VALUE;
+	int V;
 	int s;
 	int t;
 	Graph G ;
-	static int[]  dad;
-	static String[] status;
-	static double[] bandwidth;
+	 int[]  dad;
+	 String[] status;
+	 int[] bandwidth;
 	
 	Heap Hp;
 	
@@ -24,7 +24,7 @@ public class DijkstraHeap {
 		this.G = G;
 		
 		dad = new int[G.vertices];
-		bandwidth= new double[G.vertices];
+		bandwidth= new int[G.vertices];
 		status = new String[G.vertices];
 		
 
@@ -86,9 +86,9 @@ public class DijkstraHeap {
 
 
 
-	public double minimum(double dt, int wt) {
+	public int minimum(int dt, int wt) {
 		// TODO Auto-generated method stub
-		double min = wt;
+		int min = wt;
 		if(dt<wt) {
 			min=dt;
 		}
