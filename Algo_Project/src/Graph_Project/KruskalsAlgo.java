@@ -1,6 +1,5 @@
 package Graph_Project;
 
-import java.util.Arrays;
 import java.util.*;
 
 public class KruskalsAlgo {
@@ -35,19 +34,18 @@ public class KruskalsAlgo {
 		parent = new int[G.vertices];
 		traceback = new int[G.vertices];
 
-		Arrays.fill(dad,-999);	
-		Arrays.fill(bandwidth,0);
-		Arrays.fill(status, "unseen");
-		Arrays.fill(rank, 1);                             // wsas 1 or 0
+		
+		Arrays.fill(rank, 1);     
+		             // wsas 1 or 0
 	//	Arrays.fill(parent, 0);                //was khalcha for loop
 		
 		for(int i=0;i<G.vertices;i++) {
 			parent[i]=i; 
-			traceback[i]=0;
+			
 		}
 		
 		status[s]="fringe";
-		bandwidth[s]=inf;
+		
 		
 		currSize=0;
 		
@@ -61,30 +59,34 @@ public class KruskalsAlgo {
 	                if(ned.dest>=i) {
 	                	E_Hp[currSize]=new Edge(i,ned.dest,ned.weight);
 	            		currSize++;
-	                }
+	                }	
 	            } 
 	           
 	        } 
 		 
 		 
-		 int size=E_Hp.length;
+		 int size=currSize;
 		 
-		 for(int k =(size/2)-1;k>=0;k--) {
-			 heapify(k,size);
+		 for(int k =size/2-1;k>=0;k--) {
+			 heapify(size,k);
 		 }
-		 
+
 		 for(int k = size-1;k>=0;k--) {
+			 
+			 
 			 Edge temp = E_Hp[0];
 			 E_Hp[0]=E_Hp[k];
 			 E_Hp[k]=temp;
-			 heapify(0,k);
+		
+			 heapify(k,0);      
+			 
 		 }
 		 
 		 
 	}
 	
 	
-	public void heapify(int i,int n) {
+	public void heapify(int n,int i) {
 		int max=i;
 		int left_child=2*i+1;
 		int right_child=2*i+2;
@@ -96,37 +98,53 @@ public class KruskalsAlgo {
 		if((right_child < n) && (E_Hp[right_child].weight> E_Hp[max].weight)) {
 			max=right_child;
 		}
+		
 		if(max!=i) {
-			Edge tempr=E_Hp[max];
-			E_Hp[max]=E_Hp[i];
-			E_Hp[i]=tempr;
+			
+			Edge tempr=E_Hp[i];
+			E_Hp[i]=E_Hp[max];
+			E_Hp[max]=tempr;
+			
+			heapify(n,max);
 		}
 	}
 	
 	
-	public void DFS(Graph newpathG) {
+	public void DFS(Graph G,int s,int t,String []status,int []dad,int []bandwidth) {
 	
 		if(s==t) {
-			System.out.println("s==t");
+			
 			return;
 			
 		}
-		for (Node n:newpathG.adjacencyList[s]) {
+		
+		status[s]="fringe";
+		
+		for (Node n:G.adjacencyList[s]) {
 			if(status[n.dest].contentEquals("unseen")) {
 				bandwidth[n.dest]=minimumOf(bandwidth[s],n.weight);
 				dad[n.dest]=s;
-				DFS(newpathG);
+				DFS(G,n.dest,t,status,dad,bandwidth);
 			}
 		}
 		status[s]="in_tree";
 	}
 	
 	public void mstPath(Graph newpathG) {
+		
+		Arrays.fill(dad,-999);	
+		Arrays.fill(bandwidth,0);
+		Arrays.fill(status, "unseen");
+		Arrays.fill(traceback, 0); 
+		
+		bandwidth[s]=inf;
 		int maxb=inf;
-		DFS(newpathG);
+		
+		DFS(newpathG,s,t,status,dad,bandwidth);
 		int i=0;
 		
 		while(t!=s) {
+			
 			maxb= minimumOf(maxb,bandwidth[t]);
 			traceback[i]=t;
 			t=dad[t];
@@ -135,20 +153,28 @@ public class KruskalsAlgo {
 		}
 		traceback[i]=s;
 		System.out.println("Maximum BW is "+maxb);
-		System.out.println("print traceback/dad");
+		
+		System.out.println(Arrays.toString(traceback));
 		
 	}
+	
 	
 	public int minimumOf(int a, int b) {
 		int min=a;
 		if(b<a) {
-			min =b;
+			min =  b;
 		}
 		return min;
 	}
+	
+	
+	
 	public void methodKruskal() {
 	
 		heapSort();
+
+
+	
 		
 		Graph pathG = new Graph(G.vertices);
 		for(int i=(E_Hp.length-1);i>=0;i--) {

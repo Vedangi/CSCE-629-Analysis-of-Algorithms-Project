@@ -22,7 +22,7 @@ public class Heap {
 		currentSize=0;
 		
 		Arrays.fill(pos,-999);	
-		
+	
 	}
 
 
@@ -41,8 +41,10 @@ public class Heap {
 	
 	public void insert(int v,int bw) {
 		
-		if (H.length==vertices){
-			System.out.println("Error in INsert");;
+		
+		
+		if (currentSize==vertices){
+			System.out.println("Error in INsert");
 		}
 		
 		H[currentSize]=v;
@@ -119,6 +121,9 @@ public class Heap {
 	int maxValue() {
 		return H[0];
 		
+	}
+	int maxBandwidth(int t) {
+		return D[H[t]];
 	}
 	
 	

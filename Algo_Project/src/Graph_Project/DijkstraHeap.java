@@ -35,7 +35,7 @@ public class DijkstraHeap {
 		status[s]="in_tree";
 		bandwidth[s]=inf;
 
-		Heap Hp = new Heap(G.vertices);
+		Hp = new Heap(G.vertices);
 		
 	}
 	
@@ -46,7 +46,9 @@ public class DijkstraHeap {
 			bandwidth[nod.dest]=nod.weight;
 			dad[nod.dest]=s;
 			status[nod.dest]="fringe";
+			
 			Hp.insert(nod.dest, bandwidth[nod.dest]);
+			
 			
 		}
 		
@@ -77,7 +79,11 @@ public class DijkstraHeap {
 			
 			
 			}
-		System.out.println("Bandwidth of t usin Heap and Dijku"+ bandwidth[t]);
+		System.out.println("Bandwidth of t usin Heap and Dijku is "+"---"+ Hp.maxBandwidth(t));
+		
+		for(int i=0;i<G.vertices;i++) {
+			System.out.println(bandwidth[i]);
+		}
 		
 	
 		
