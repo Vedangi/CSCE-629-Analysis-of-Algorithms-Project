@@ -24,13 +24,20 @@ public class Driver {
 		
 		//testG.printGraph();
 		
-//		Dijkstra d1 = new Dijkstra(testG,0,5);                //tested working fine
-//		d1.calculate_dijkstra();
+		Graph testSparse=new Graph(5000);
+		testSparse.generateSparseGraph(5);
 		
-//		DijkstraHeap dh = new DijkstraHeap(testG,0,5);
-//		dh.calculate_dijkstra_Heap();
+		Dijkstra d1 = new Dijkstra(testSparse,5,47);                //tested working fine
+		d1.calculate_dijkstra();
+		
+		System.out.println("/////////////////////////////////////////////////////////////////////////////////////");
+		
+		DijkstraHeap dh = new DijkstraHeap(testSparse,5,47);
+		dh.calculate_dijkstra_Heap();
+		
+		System.out.println("//////////////////////////////////////////////////////////////////////////////////////////");
 //		
-		KruskalsAlgo kal=new KruskalsAlgo(testG,0,5);
+		KruskalsAlgo kal=new KruskalsAlgo(testSparse,5,47);         //tested working fine
 		kal.methodKruskal();
 //		
 		

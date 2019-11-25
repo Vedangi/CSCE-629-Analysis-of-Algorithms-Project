@@ -68,7 +68,7 @@ public class DijkstraHeap {
 					Hp.insert(w, bandwidth[w]);
 					}
 					
-				else if((status[w].equals("fringe")) && (bandwidth[w]<minimum(bandwidth[v],ed.weight))) {
+				else if((status[w].contentEquals("fringe")) && (bandwidth[w]<minimum(bandwidth[v],ed.weight))) {
 					Hp.delete(w);
 					dad[w]=v;
 					bandwidth[w]=minimum(bandwidth[v],ed.weight);
@@ -79,11 +79,15 @@ public class DijkstraHeap {
 			
 			
 			}
-		System.out.println("Bandwidth of t usin Heap and Dijku is "+"---"+ Hp.maxBandwidth(t));
+		System.out.println("Bandwidth of t using Dijkstra with  Heap is  "+"---"+ Hp.maxBandwidth(t));
 		
-		for(int i=0;i<G.vertices;i++) {
-			System.out.println(bandwidth[i]);
+		LinkedList<Integer> pathListH = new LinkedList<>();
+		int p=t;
+		while(p!=-999) {
+			pathListH.push(p);
+			p=dad[p];
 		}
+		System.out.println(pathListH);
 		
 	
 		

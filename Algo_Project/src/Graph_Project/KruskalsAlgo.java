@@ -135,7 +135,7 @@ public class KruskalsAlgo {
 		Arrays.fill(dad,-999);	
 		Arrays.fill(bandwidth,0);
 		Arrays.fill(status, "unseen");
-		Arrays.fill(traceback, 0); 
+		Arrays.fill(traceback, -999); 
 		
 		bandwidth[s]=inf;
 		int maxb=inf;
@@ -154,7 +154,13 @@ public class KruskalsAlgo {
 		traceback[i]=s;
 		System.out.println("Maximum BW is "+maxb);
 		
-		System.out.println(Arrays.toString(traceback));
+		int trace=0;
+		LinkedList<Integer> pathListK = new LinkedList<>();
+		while(traceback[trace]!=-999) {
+			pathListK.push(traceback[trace]);
+			trace++;
+		}
+		System.out.println(pathListK);
 		
 	}
 	

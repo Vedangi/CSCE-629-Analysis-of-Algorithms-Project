@@ -22,6 +22,8 @@ public class Heap {
 		currentSize=0;
 		
 		Arrays.fill(pos,-999);	
+		Arrays.fill(D,0);
+		
 	
 	}
 
@@ -39,22 +41,23 @@ public class Heap {
 		return (2*i + 2	);
 	}
 	
+	
+	
 	public void insert(int v,int bw) {
 		
-		
-		
 		if (currentSize==vertices){
-			System.out.println("Error in INsert");
+			System.out.println("Error in Insert");
 		}
 		
 		H[currentSize]=v;
 		currentSize++;
 		D[v]=bw;
-		int i=currentSize;
+		int i=currentSize-1;
 		pos[v]=i;
 		
 		
-		while(i!=0 && (D[H[parent(i)]]<D[H[i]])) {
+		while(i!=0 && (D[H[parent(i)]] < D[H[i]])) {
+			
 			int temp = H[i];
 			H[i]=H[parent(i)];
 			H[parent(i)]=temp;
@@ -123,7 +126,7 @@ public class Heap {
 		
 	}
 	int maxBandwidth(int t) {
-		return D[H[t]];
+		return D[t];
 	}
 	
 	
