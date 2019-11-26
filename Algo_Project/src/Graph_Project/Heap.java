@@ -22,7 +22,7 @@ public class Heap {
 		currentSize=0;
 		
 		Arrays.fill(pos,-999);	
-		Arrays.fill(D,0);
+		//Arrays.fill(D,0);
 		
 	
 	}

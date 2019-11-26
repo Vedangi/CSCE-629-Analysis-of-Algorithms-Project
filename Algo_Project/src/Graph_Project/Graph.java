@@ -47,7 +47,7 @@ public class Graph {
 	
 	public void createCycle() {
 		for(int i=0;i<vertices-1;i++) {
-			int randomWeight= init_random(100,1);
+			int randomWeight= init_random(1000,1);
 			addEdge(i,i+1,randomWeight);
 		}
 		
@@ -75,7 +75,7 @@ public class Graph {
 			int random_v2= init_random(vertices-1,0);
 			
 			if(random_v1!=random_v2) {
-				int random_weight=init_random(100,1);
+				int random_weight=init_random(10000,1);
 			    added=addEdge(random_v1,random_v2,random_weight);
 			    if(added==1)
 			    	iloop--;
@@ -91,7 +91,7 @@ public class Graph {
 				if(i!=j) {
 					double random_number=Math.random();
 					if(random_number < 0.2) {
-						int randomWeight=init_random(100,1);
+						int randomWeight=init_random(10000,1);
 						int added= addEdge(i,j,randomWeight);
 					}
 				}
@@ -108,7 +108,7 @@ public class Graph {
 			int random_v2= init_random(vertices-1,0);
 			
 			if(random_v1!=random_v2) {
-				int random_weight=init_random(100,1);
+				int random_weight=init_random(10000,1);
 				int added=addEdge(random_v1,random_v2,random_weight);
 			}
 			addCounter2++;
