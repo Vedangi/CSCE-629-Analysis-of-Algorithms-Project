@@ -12,7 +12,7 @@ public class DijkstraHeap {
 	 String[] status;
 	 int[] bandwidth;
 	
-	Heap Hp;
+	Heap2 Hp;
 	
 	
 	
@@ -35,12 +35,12 @@ public class DijkstraHeap {
 		status[s]="in_tree";
 		bandwidth[s]=inf;
 
-		Hp = new Heap(G.vertices);
+		Hp = new Heap2(G.vertices);
 		
 	}
 	
 	public void calculate_dijkstra_Heap() {
-		
+		Hp.insert(s, bandwidth[s]);
 		for(Node nod:G.adjacencyList[s]) {
 			
 			bandwidth[nod.dest]=nod.weight;
@@ -79,7 +79,7 @@ public class DijkstraHeap {
 			
 			
 			}
-		System.out.println("Bandwidth of t using Dijkstra with  Heap is  "+"---"+ Hp.maxBandwidth(t));
+		System.out.println("Bandwidth of t using Dijkstra with  Heap is  "+"--->"+ Hp.maxBandwidth(t));
 		
 		LinkedList<Integer> pathListH = new LinkedList<>();
 		int p=t;

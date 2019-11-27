@@ -22,7 +22,7 @@ public class Heap {
 		currentSize=0;
 		
 		Arrays.fill(pos,-999);	
-		//Arrays.fill(D,0);
+		Arrays.fill(D,0);
 		
 	
 	}
@@ -50,24 +50,28 @@ public class Heap {
 		}
 		
 		H[currentSize]=v;
-		currentSize++;
+		pos[v]=currentSize;
+		
 		D[v]=bw;
-		int i=currentSize-1;
-		pos[v]=i;
+		maxHeapify(currentSize);
+		int i=currentSize;      //-1
+		//pos[v]=i;
 		
 		
-		while(i!=0 && (D[H[parent(i)]] < D[H[i]])) {
+		while(i>=1 && (D[H[parent(i)]] < D[H[i]])) {
 			
 			int temp = H[i];
 			H[i]=H[parent(i)];
 			H[parent(i)]=temp;
+			
+		
 			
 			pos[H[i]]=i;
 			pos[H[parent(i)]]=parent(i);
 			i=parent(i);
 			
 		}
-		
+		currentSize++;
 				
 	}
 
@@ -101,9 +105,9 @@ public class Heap {
 		int left_child_i=leftChild(i);
 		int right_child_i=rightChild(i);
 		
-		if(left_child_i < currentSize && D[H[left_child_i]]>D[H[max]])
+		if(left_child_i <= currentSize && D[H[left_child_i]]>D[H[max]])
 			max=left_child_i;
-		if(right_child_i < currentSize && D[H[right_child_i]]>D[H[max]])
+		if(right_child_i <= currentSize && D[H[right_child_i]]>D[H[max]])
 		    max=right_child_i;
 		
 		if(max!=i) {
@@ -133,6 +137,45 @@ public class Heap {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+
+	
+		 Heap h=new Heap(100);
+		 h.insert(32,7812);
+		 h.insert(34,2507);
+		 h.insert(9,9545);
+		 h.insert(18,8052);
+
+		
+		        System.out.println(h.maxValue());
+		
+		        h.delete(h.maxValue());
+		      
+		        System.out.println("max"+ h.maxValue());
+		        
+		 h.insert(8,6664);
+		 h.insert(10,8255);
+		 h.insert(17,5941);
+		 h.insert(20,6049);
+		 h.insert(37,748);
+		 h.insert(23,4798);
+		 h.insert(1,5790);
+		 h.insert(21,2706);
+		 h.insert(11,4651);
+//		 
+		 System.out.println("max"+ h.maxValue());
+		 h.delete(h.maxValue());
+		 System.out.println("max"+ h.maxValue());
+		 h.insert(22,7045);
+//		 for(int i=0;i<100;i++) {
+//				System.out.print(h.H[i]+",");
+//			}
+		// h.print();
+		// cout<<h.max()<<" "<<h.maxValue()<<endl;
+		 System.out.println("max"+h.maxValue());
+		 h.delete(h.maxValue());
+		 System.out.println("max"+h.maxValue());
+
+		
 	}
 
 }
